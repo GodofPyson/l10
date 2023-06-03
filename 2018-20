@@ -69,9 +69,9 @@ hdfs dfs -ls final_exam/DailyImmigPort &> /dev/null
 [ $? != 0 ] && hdfs dfs -mkdir final_exam/DailyImmigPort &> /dev/null || hdfs dfs -rm -r final_exam/DailyImmigPort/* &> /dev/null
 
 date18="201801"
-for list in ${dataset_list_2019}
+for list18 in ${dataset_list_2018}
 do
-  wget "${list}" -O ~/DailyImmigPort/${date18}_DailyImmigPort.zip > /dev/null 2>&1
+  wget "${list18}" -O ~/DailyImmigPort/${date18}_DailyImmigPort.zip > /dev/null 2>&1
   [ $? == 0 ] && echo -e " [${GREEN}●${NC}] ${date18}_DailyImmigPort.zip download success." || echo -e " [${RED}●${NC}] ${date19}_DailyImmigPort.zip download failed."
 
   original=$(unzip -l ~/DailyImmigPort/${date18}_DailyImmigPort.zip | grep "${date18}" | tail -n 1 | awk '{ print $4 }')
@@ -92,9 +92,9 @@ do
 done
 
 date19="201901"
-for list in ${dataset_list_2019}
+for list19 in ${dataset_list_2019}
 do
-  wget "${list}" -O ~/DailyImmigPort/${date19}_DailyImmigPort.zip > /dev/null 2>&1
+  wget "${list19}" -O ~/DailyImmigPort/${date19}_DailyImmigPort.zip > /dev/null 2>&1
   [ $? == 0 ] && echo -e " [${GREEN}●${NC}] ${date19}_DailyImmigPort.zip download success." || echo -e " [${RED}●${NC}] ${date19}_DailyImmigPort.zip download failed."
 
   original=$(unzip -l ~/DailyImmigPort/${date19}_DailyImmigPort.zip | grep "${date19}" | tail -n 1 | awk '{ print $4 }')
@@ -115,9 +115,9 @@ do
 done
 
 date20="202001"
-for list in ${dataset_list_2020}
+for list20 in ${dataset_list_2020}
 do
-  wget "${list}" -O ~/DailyImmigPort/${date20}_DailyImmigPort.zip > /dev/null 2>&1
+  wget "${list20}" -O ~/DailyImmigPort/${date20}_DailyImmigPort.zip > /dev/null 2>&1
   [ $? == 0 ] && echo -e " [${GREEN}●${NC}] ${date20}_DailyImmigPort.zip download success." || echo -e " [${RED}●${NC}] ${date20}_DailyImmigPort.zip download failed."
 
   original=$(unzip -l ~/DailyImmigPort/${date20}_DailyImmigPort.zip | grep "${date20}" | tail -n 1 | awk '{ print $4 }')
