@@ -74,20 +74,20 @@ do
   wget "${list18}" -O ~/DailyImmigPort/${date18}_DailyImmigPort.zip > /dev/null 2>&1
   [ $? == 0 ] && echo -e " [${GREEN}●${NC}] ${date18}_DailyImmigPort.zip download success." || echo -e " [${RED}●${NC}] ${date19}_DailyImmigPort.zip download failed."
 
-  original=$(unzip -l ~/DailyImmigPort/${date18}_DailyImmigPort.zip | grep "${date18}" | tail -n 1 | awk '{ print $4 }')
-  fix=$(unzip -l ~/DailyImmigPort/${date18}_DailyImmigPort.zip | grep "${date18}" | tail -n 1 | awk '{ print $4 }' | sed 's/.csv/_Fix.csv/g')
-  unzip ~/DailyImmigPort/${date18}_DailyImmigPort.zip ${original} -d ~/DailyImmigPort/original-data/ &> /dev/null
+  original18=$(unzip -l ~/DailyImmigPort/${date18}_DailyImmigPort.zip | grep "${date18}" | tail -n 1 | awk '{ print $4 }')
+  fix18=$(unzip -l ~/DailyImmigPort/${date18}_DailyImmigPort.zip | grep "${date18}" | tail -n 1 | awk '{ print $4 }' | sed 's/.csv/_Fix.csv/g')
+  unzip ~/DailyImmigPort/${date18}_DailyImmigPort.zip ${original18} -d ~/DailyImmigPort/original-data/ &> /dev/null
   [ $? == 0 ] && echo -e " [${GREEN}●${NC}] ${date18}_DailyImmigPort.zip unzip success." || echo -e " [${RED}●${NC}] ${date18}_DailyImmigPort.zip unzip failed."
 
-  ls ~/DailyImmigPort/original-data/${original} &> /dev/null
+  ls ~/DailyImmigPort/original-data/${original18} &> /dev/null
   [ $? == 0 ] && rm ~/DailyImmigPort/${date18}_DailyImmigPort.zip
 
-  cat ~/DailyImmigPort/original-data/${original} | tr -s ',,,' ',' | cut -d ',' -f 1,2,5,8,39 > ~/DailyImmigPort/fix-data/${fix}
-  sed -i '/日期,入出境總人數_小計,桃園一期小計,桃園二期小計,松山機場小計/d' ~/DailyImmigPort/fix-data/${fix}
+  cat ~/DailyImmigPort/original-data/${original18} | tr -s ',,,' ',' | cut -d ',' -f 1-4,15 > ~/DailyImmigPort/fix-data/${fix18}
+  sed -i '/日期,入出境總人數_小計,桃園一期小計,桃園二期小計,松山機場小計/d' ~/DailyImmigPort/fix-data/${fix18}
 
-  hdfs dfs -put ~/2018_DailyImmigPort/fix-data/${fix} final_exam/DailyImmigPort/${fix}
-  [ $? == 0 ] && echo -e " [${GREEN}●${NC}] ${fix} put success." || echo -e " [${RED}●${NC}] ${fix} put failed."
-  date19=$((${date18}+1))
+  hdfs dfs -put ~/2018_DailyImmigPort/fix-data/${fix18} final_exam/DailyImmigPort/${fix18}
+  [ $? == 0 ] && echo -e " [${GREEN}●${NC}] ${fix18} put success." || echo -e " [${RED}●${NC}] ${fix18} put failed."
+  date18=$((${date18}+1))
   echo "---"
 done
 
@@ -97,19 +97,19 @@ do
   wget "${list19}" -O ~/DailyImmigPort/${date19}_DailyImmigPort.zip > /dev/null 2>&1
   [ $? == 0 ] && echo -e " [${GREEN}●${NC}] ${date19}_DailyImmigPort.zip download success." || echo -e " [${RED}●${NC}] ${date19}_DailyImmigPort.zip download failed."
 
-  original=$(unzip -l ~/DailyImmigPort/${date19}_DailyImmigPort.zip | grep "${date19}" | tail -n 1 | awk '{ print $4 }')
-  fix=$(unzip -l ~/DailyImmigPort/${date18}_DailyImmigPort.zip | grep "${date19}" | tail -n 1 | awk '{ print $4 }' | sed 's/.csv/_Fix.csv/g')
+  original19=$(unzip -l ~/DailyImmigPort/${date19}_DailyImmigPort.zip | grep "${date19}" | tail -n 1 | awk '{ print $4 }')
+  fix19=$(unzip -l ~/DailyImmigPort/${date18}_DailyImmigPort.zip | grep "${date19}" | tail -n 1 | awk '{ print $4 }' | sed 's/.csv/_Fix.csv/g')
   unzip ~/DailyImmigPort/${date19}_DailyImmigPort.zip ${original} -d ~/DailyImmigPort/original-data/ &> /dev/null
   [ $? == 0 ] && echo -e " [${GREEN}●${NC}] ${date19}_DailyImmigPort.zip unzip success." || echo -e " [${RED}●${NC}] ${date19}_DailyImmigPort.zip unzip failed."
 
-  ls ~/DailyImmigPort/original-data/${original} &> /dev/null
+  ls ~/DailyImmigPort/original-data/${original19} &> /dev/null
   [ $? == 0 ] && rm ~/DailyImmigPort/${date19}_DailyImmigPort.zip
 
-  cat ~/DailyImmigPort/original-data/${original} | cut -d ',' -f 1,2,5,8,39 > ~/DailyImmigPort/fix-data/${fix}
-  sed -i '/日期,入出境總人數_小計,桃園一期小計,桃園二期小計,松山機場小計/d' ~/DailyImmigPort/fix-data/${fix}
+  cat ~/DailyImmigPort/original-data/${original19} | cut -d ',' -f 1,2,5,8,39 > ~/DailyImmigPort/fix-data/${fix19}
+  sed -i '/日期,入出境總人數_小計,桃園一期小計,桃園二期小計,松山機場小計/d' ~/DailyImmigPort/fix-data/${fix19}
 
-  hdfs dfs -put ~/2019_DailyImmigPort/fix-data/${fix} final_exam/DailyImmigPort/${fix}
-  [ $? == 0 ] && echo -e " [${GREEN}●${NC}] ${fix} put success." || echo -e " [${RED}●${NC}] ${fix} put failed."
+  hdfs dfs -put ~/2019_DailyImmigPort/fix-data/${fix19} final_exam/DailyImmigPort/${fix19}
+  [ $? == 0 ] && echo -e " [${GREEN}●${NC}] ${fix19} put success." || echo -e " [${RED}●${NC}] ${fix19} put failed."
   date19=$((${date19}+1))
   echo "---"
 done
