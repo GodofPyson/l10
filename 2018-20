@@ -99,7 +99,7 @@ do
 
   original19=$(unzip -l ~/DailyImmigPort/${date19}_DailyImmigPort.zip | grep "${date19}" | tail -n 1 | awk '{ print $4 }')
   fix19=$(unzip -l ~/DailyImmigPort/${date19}_DailyImmigPort.zip | grep "${date19}" | tail -n 1 | awk '{ print $4 }' | sed 's/.csv/_Fix.csv/g')
-  unzip ~/DailyImmigPort/${date19}_DailyImmigPort.zip ${original} -d ~/DailyImmigPort/original-data/ &> /dev/null
+  unzip ~/DailyImmigPort/${date19}_DailyImmigPort.zip ${original19} -d ~/DailyImmigPort/original-data/ &> /dev/null
   [ $? == 0 ] && echo -e " [${GREEN}●${NC}] ${date19}_DailyImmigPort.zip unzip success." || echo -e " [${RED}●${NC}] ${date19}_DailyImmigPort.zip unzip failed."
 
   ls ~/DailyImmigPort/original-data/${original19} &> /dev/null
