@@ -108,7 +108,7 @@ do
   ls ~/DailyImmigPort/original-data/${original19} &> /dev/null
   [ $? == 0 ] && rm ~/DailyImmigPort/${date19}_DailyImmigPort.zip
 
-  cat ~/DailyImmigPort/original-data/${original19} | cut -d ',' -f 1,2,5,8,39 > ~/DailyImmigPort/fix-data/${fix19}
+  cat ~/DailyImmigPort/original-data/${original19} | cut -d ',' -f 1-4,15 > ~/DailyImmigPort/fix-data/${fix19}
   sed -i '/日期,入出境總人數_小計,桃園一期小計,桃園二期小計,松山機場小計/d' ~/DailyImmigPort/fix-data/${fix19}
 
   hdfs dfs -put ~/DailyImmigPort/fix-data/${fix19} final_exam/DailyImmigPort/${fix19}
