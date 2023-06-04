@@ -108,7 +108,7 @@ do
   cat ~/DailyImmigPort/original-data/${original19} | cut -d ',' -f 1,2,5,8,39 > ~/DailyImmigPort/fix-data/${fix19}
   sed -i '/日期,入出境總人數_小計,桃園一期小計,桃園二期小計,松山機場小計/d' ~/DailyImmigPort/fix-data/${fix19}
 
-  hdfs dfs -put ~/2019_DailyImmigPort/fix-data/${fix19} final_exam/DailyImmigPort/${fix19}
+  hdfs dfs -put ~/DailyImmigPort/fix-data/${fix19} final_exam/DailyImmigPort/${fix19}
   [ $? == 0 ] && echo -e " [${GREEN}●${NC}] ${fix19} put success." || echo -e " [${RED}●${NC}] ${fix19} put failed."
   date19=$((${date19}+1))
   echo "---"
@@ -131,7 +131,7 @@ do
   cat ~/DailyImmigPort/original-data/${original} | cut -d ',' -f 1,2,5,8,39 > ~/DailyImmigPort/fix-data/${fix}
   sed -i '/日期,入出境總人數_小計,桃園一期小計,桃園二期小計,松山機場小計/d' ~/DailyImmigPort/fix-data/${fix}
 
-  hdfs dfs -put ~/2020_DailyImmigPort/fix-data/${fix} final_exam/DailyImmigPort/${fix}
+  hdfs dfs -put ~/DailyImmigPort/fix-data/${fix} final_exam/DailyImmigPort/${fix}
   [ $? == 0 ] && echo -e " [${GREEN}●${NC}] ${fix} put success." || echo -e " [${RED}●${NC}] ${fix} put failed."
   date20=$((${date20}+1))
   echo "---"
