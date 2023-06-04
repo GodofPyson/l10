@@ -86,7 +86,7 @@ do
   [ $? == 0 ] && rm ~/DailyImmigPort/${date18}_DailyImmigPort.zip
 
   cat ~/DailyImmigPort/original-data/${original18} | tr -s ',,,' ',' | cut -d ',' -f 1-4,15 > ~/DailyImmigPort/fix-data/${fix18}
-  sed -i '/,入境查驗,出境查驗,小計,入境查驗/d' ~/DailyImmigPort/fix-data/${fix18}
+  sed -i '1,2d' ~/DailyImmigPort/fix-data/${fix18}
 
   hdfs dfs -put ~/2018_DailyImmigPort/fix-data/${fix18} final_exam/DailyImmigPort/${fix18}
   [ $? == 0 ] && echo -e " [${GREEN}●${NC}] ${fix18} put success." || echo -e " [${RED}●${NC}] ${fix18} put failed."
@@ -109,7 +109,7 @@ do
   [ $? == 0 ] && rm ~/DailyImmigPort/${date19}_DailyImmigPort.zip
 
   cat ~/DailyImmigPort/original-data/${original19} | tr -s ',,,' ',' | cut -d ',' -f 1-4,15 > ~/DailyImmigPort/fix-data/${fix19}
-  sed -i '/,入境查驗,出境查驗,小計,入境查驗/d' ~/DailyImmigPort/fix-data/${fix19}
+  sed -i '1,2d' ~/DailyImmigPort/fix-data/${fix19}
 
   hdfs dfs -put ~/DailyImmigPort/fix-data/${fix19} final_exam/DailyImmigPort/${fix19}
   [ $? == 0 ] && echo -e " [${GREEN}●${NC}] ${fix19} put success." || echo -e " [${RED}●${NC}] ${fix19} put failed."
