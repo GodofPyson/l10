@@ -65,6 +65,9 @@ hdfs dfs -ls final_exam/DailyImmigPort &> /dev/null
 ls ~/DailyImmigPort/{original-data,fix-data} &> /dev/null
 [ $? != 0 ] && mkdir -p ~/DailyImmigPort/{original-data,fix-data}
 
+hdfs dfs -ls final_exam &> /dev/null
+[ $? != 0 ] && hdfs dfs -mkdir final_exam &> /dev/null || hdfs dfs -rm -r final_exam/DailyImmigPort &> /dev/null
+
 hdfs dfs -ls final_exam/DailyImmigPort &> /dev/null
 [ $? != 0 ] && hdfs dfs -mkdir final_exam/DailyImmigPort &> /dev/null || hdfs dfs -rm -r final_exam/DailyImmigPort/* &> /dev/null
 
