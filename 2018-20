@@ -88,7 +88,7 @@ do
   cat ~/DailyImmigPort/original-data/${original18} | tr -s ',,,' ',' | cut -d ',' -f 1-4,15 > ~/DailyImmigPort/fix-data/${fix18}
   sed -i '1,2d' ~/DailyImmigPort/fix-data/${fix18}
 
-  hdfs dfs -put ~/2018_DailyImmigPort/fix-data/${fix18} final_exam/DailyImmigPort/${fix18}
+  hdfs dfs -put ~/DailyImmigPort/fix-data/${fix18} final_exam/DailyImmigPort/${fix18}
   [ $? == 0 ] && echo -e " [${GREEN}●${NC}] ${fix18} put success." || echo -e " [${RED}●${NC}] ${fix18} put failed."
   date18=$((${date18}+1))
   echo "---"
