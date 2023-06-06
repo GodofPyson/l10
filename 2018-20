@@ -117,12 +117,7 @@ do
   echo "---"
 done
 
-#201906
-rm -r DailyImmigPort/fix-data/20190630-DailyImmigPort_* &> /dev/null
-hdfs dfs -rm -r final_exam/DailyImmigPort/20190630-DailyImmigPort_Fix.csv &> /dev/null
-cat DailyImmigPort/original-data/20190630-DailyImmigPort.csv | cut -d ',' -f 1,2,5,8,39 > DailyImmigPort/fix-data/20190630-DailyImmigPort_fix.csv &> /dev/null
-sed -i '/日期,入出境總人數_小計,桃園一期小計,桃園二期小計,松山機場小計/d' ~/DailyImmigPort/fix-data/20190630-DailyImmigPort_Fix.csv &> /dev/null
-hdfs dfs -put ~/DailyImmigPort/fix-data/20190630-DailyImmigPort_Fix.csv final_exam/DailyImmigPort/20190630-DailyImmigPort_Fix.csv &> /dev/null
+
   
 date20="202001"
 for list20 in ${dataset_list_2020}
